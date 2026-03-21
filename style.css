@@ -684,8 +684,14 @@ footer {
 
 /* Mobil versiya uchun */
 @media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
+    /* Asosiy shrift va o'lchamlarni kichiklashtirish */
+    html { font-size: 14px; }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    
+    body {
+        overflow-x: hidden; /* Yon tomonga siljishni oldini olish */
+    }
 
     nav {
         padding: 20px;
@@ -715,6 +721,16 @@ footer {
         display: block;
         z-index: 1001; /* Menyu ustida turishi uchun */
     }
+    
+    /* Til va tema tugmalarini menyu ochilganda ko'rinadigan qilish */
+    .lang-switch, .theme-switch-wrapper, .music-toggle-wrapper {
+        margin-left: 10px;
+    }
+    
+    .lang-btn {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
 
     .hamburger.active .fa-bars {
         display: none;
@@ -727,7 +743,17 @@ footer {
     header {
         flex-direction: column-reverse;
         text-align: center;
-        padding-top: 100px;
+        padding-top: 80px;
+        padding-bottom: 50px;
+        min-height: auto;
+    }
+    
+    .header-content {
+        min-width: 100%; /* Kichik ekranlarda sig'ishini ta'minlash */
+    }
+    
+    .header-content h1 {
+        font-size: 2.5rem;
     }
 
     .header-btns {
@@ -735,8 +761,54 @@ footer {
     }
 
     .header-img img {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
+        margin-bottom: 30px;
+    }
+    
+    /* Portfolio slayder mobilga moslash */
+    .swiper-slide {
+        width: 80%;
+        max-width: 300px;
+        height: 380px;
+    }
+    
+    /* Aloqa formasi to'liq ekran */
+    .contact-info, .contact-form {
+        min-width: 100%;
+    }
+    
+    .contact-wrapper {
+        gap: 30px;
+    }
+
+    /* Chat vidjeti mobil uchun */
+    .chat-widget {
+        left: 20px;
+        bottom: 20px;
+    }
+    
+    .chat-box {
+        width: 280px;
+        left: 0;
+        bottom: 70px;
+    }
+    
+    /* Intro animatsiya shrifti */
+    .logo-header {
+        font-size: 2rem;
+    }
+    .captain-badge.large {
+        width: 50px;
+        height: 45px;
+        font-size: 2rem;
+        border-width: 3px;
+    }
+    
+    /* ScrollTop tugmasi chat bilan ustma-ust tushmasligi uchun */
+    #scrollTopBtn {
+        right: 20px;
+        bottom: 80px;
     }
 
     .floating-socials {

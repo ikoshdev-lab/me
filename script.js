@@ -299,7 +299,7 @@ if (contactForm) {
         // Agar backend va frontend alohida joylashsa (masalan Vercel + Render), bu yerni o'zgartirish kerak bo'ladi.
         // Hozircha universal yechim:
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const API_URL = isLocal ? 'http://localhost:5000/api/contact' : 'https://ikromjon-backend.onrender.com/api/contact'; // Bu yerga 1-qadamda olgan havolangizni qo'ying. Masalan: https://sizning-backend-nomingiz.onrender.com/api/contact
+        const API_URL = isLocal ? 'http://localhost:5000/api/contact' : 'https://islomov-ikrom-software-engineer.onrender.com/api/contact';
 
         try {
             const response = await fetch(API_URL, { // Backend API manzilini ko'rsating
