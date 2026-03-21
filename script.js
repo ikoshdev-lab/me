@@ -296,10 +296,9 @@ if (contactForm) {
         const message = contactForm.querySelector('textarea[name="message"]').value;
 
         // API manzilini aniqlash
-        // Agar backend va frontend alohida joylashsa (masalan Vercel + Render), bu yerni o'zgartirish kerak bo'ladi.
-        // Hozircha universal yechim:
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         const API_URL = isLocal ? 'http://localhost:5000/api/contact' : 'https://islomov-ikrom-software-engineer.onrender.com/api/contact';
+        console.log("Xabar yuborilmoqda:", API_URL); // Tekshirish uchun
 
         try {
             const response = await fetch(API_URL, { // Backend API manzilini ko'rsating
