@@ -399,84 +399,16 @@ closePortfolioBtn.onclick = () => {
 };
 
 /* ---------------------------------------------------
-   5. BAHORIY EFFEKTLAR (Flowers & Modal)
+   5. MODAL OYNASINI YOPISH (Tashqariga bosganda)
 --------------------------------------------------- */
-// Gullar yaratish
-function createFlowers() {
-    const container = document.getElementById('flower-container');
-    const flowerCount = 20; // Gullar soni
-    const flowers = ['🌸', '🌺', '🌹', '🌷', '🌻', '🌼', '🍃'];
-
-    for (let i = 0; i < flowerCount; i++) {
-        const flower = document.createElement('div');
-        flower.classList.add('flower');
-        
-        // Random emoji tanlash
-        flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
-        flower.style.fontSize = Math.random() * 20 + 15 + 'px'; // 15px dan 35px gacha
-        
-        // Random joylashuv va animatsiya vaqti
-        flower.style.left = Math.random() * 100 + 'vw';
-        flower.style.animationDuration = Math.random() * 5 + 5 + 's'; // 5-10 sekund
-        flower.style.animationDelay = Math.random() * 5 + 's';
-        
-        container.appendChild(flower);
-    }
-}
-
-createFlowers();
-
-// Navro'z Modalini ko'rsatish
-const modal = document.getElementById("navruz-modal");
-const closeModalSpan = document.getElementsByClassName("close-modal")[0];
-const closeModalBtn = document.getElementById("close-modal-btn");
-
-function closeModal() {
-    modal.style.display = "none";
-}
-
-closeModalSpan.onclick = closeModal;
-
-// "Rahmat!" tugmasi bosilganda musiqa ham boshlansin
-closeModalBtn.onclick = () => {
-    closeModal();
-    if (!isMusicPlaying) {
-        bgMusic.play();
-        isMusicPlaying = true;
-        musicBtn.classList.replace('fa-music', 'fa-pause');
-    }
-};
-
 window.onclick = function(event) {
-    if (event.target === modal) {
-        closeModal();
-    } else if (event.target === portfolioModal) {
+    if (event.target === portfolioModal) {
         portfolioModal.style.display = "none";
     }
 }
 
 /* ---------------------------------------------------
-   6. FON MUSIQASI (Audio Control)
---------------------------------------------------- */
-const musicBtn = document.getElementById('music-btn');
-const bgMusic = document.getElementById('bgMusic');
-let isMusicPlaying = false;
-
-musicBtn.addEventListener('click', () => {
-    if (isMusicPlaying) {
-        bgMusic.pause();
-        musicBtn.classList.remove('fa-pause', 'fa-spin');
-        musicBtn.classList.add('fa-music');
-    } else {
-        bgMusic.play();
-        musicBtn.classList.remove('fa-music');
-        musicBtn.classList.add('fa-pause', 'fa-spin');
-    }
-    isMusicPlaying = !isMusicPlaying;
-});
-
-/* ---------------------------------------------------
-   8. INTRO ANIMATION
+   6. INTRO ANIMATION
 --------------------------------------------------- */
 const intro = document.querySelector('.intro');
 
@@ -486,14 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Introni ko'rsatish va 2.5 sekunddan keyin olib tashlash
     setTimeout(() => {
         intro.style.top = '-100vh'; // Ekranni tepaga surish
-        
-        // 2. Intro tugagach, Navro'z modalini chiqarish
-        setTimeout(() => {
-            preloader.classList.add('preloader-hide'); // Hide preloader after intro
-            modal.style.display = "flex";
-            createFlowers();
-        }, 500); // Intro ko'tarilgandan 0.5s keyin
-        
+        preloader.classList.add('preloader-hide');
     }, 2500); // 2.5 sekund intro turadi
 });
 
