@@ -3,6 +3,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors'); // CORS xatolarini oldini olish uchun
 const rateLimit = require('express-rate-limit'); // Spamdan himoya
+const path = require('path'); // Fayl yo'llari bilan ishlash uchun
 
 const app = express();
 const PORT = process.env.PORT || 5000; // Server porti
@@ -11,9 +12,12 @@ const PORT = process.env.PORT || 5000; // Server porti
 app.use(cors()); // Barcha domenlardan so'rovlarni qabul qilish
 app.use(express.json()); // JSON formatidagi so'rovlarni tahlil qilish
 
-// Server ishlayotganini tekshirish uchun oddiy route
+// Statik fayllarni (Frontend: HTML, CSS, JS, Rasmlar) ulash
+app.use(express.static(path.join(__dirname, '../')));
+
+// Asosiy sahifa so'ralganda index.html ni qaytarish
 app.get('/', (req, res) => {
-    res.send('Portfolio Backend Server is running...');
+    res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 // Nodemailer transporterini sozlash
