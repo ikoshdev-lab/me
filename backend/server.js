@@ -66,6 +66,6 @@ app.post('/api/contact', limiter, async (req, res) => {
 
 // Serverni ishga tushirish
 app.listen(PORT, () => {
-    console.log(`Server muvaffaqiyatli ishga tushdi: ${PORT}`);
-    console.log(`LINK: https://islomov-ikromjon-404.onrender.com`);
+    console.log(`SERVER ISHLADI! Port: ${PORT}`);
+    console.log(`SAYT MANZILI: https://islomov-ikromjon-404.onrender.com`);
 });
