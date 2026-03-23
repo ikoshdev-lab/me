@@ -14,7 +14,7 @@ app.use(cors()); // Barcha domenlardan so'rovlarni qabul qilish
 app.use(express.json()); // JSON formatidagi so'rovlarni tahlil qilish
 
 // Statik fayllar yo'lini aniqlash
-const frontendPath = path.join(__dirname, '../');
+const frontendPath = path.resolve(__dirname, '..'); // '..' orqali aniq tepaga chiqish
 console.log('Frontend papkasi:', frontendPath);
 
 // DEBUG: Papka ichidagi fayllarni tekshirish (Render loglarida ko'rinadi)
@@ -35,7 +35,7 @@ app.use(express.static(frontendPath));
 
 // Asosiy sahifa so'ralganda index.html ni qaytarish
 app.get('/', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
+    res.sendFile(path.resolve(frontendPath, 'index.html'));
 });
 
 // Nodemailer transporterini sozlash
@@ -84,6 +84,6 @@ app.post('/api/contact', limiter, async (req, res) => {
 
 // Serverni ishga tushirish
 app.listen(PORT, () => {
-    console.log(`VERSIYA 1.0.8 (PATH FIX) ISHLADI! Port: ${PORT}`);
+    console.log(`VERSIYA 1.0.9 (FINAL FIX) ISHLADI! Port: ${PORT}`);
     console.log(`Server ishga tushdi.`);
 });
