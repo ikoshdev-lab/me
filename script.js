@@ -297,7 +297,8 @@ if (contactForm) {
 
         // API manzilini aniqlash
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const API_URL = isLocal ? 'http://localhost:5000/api/contact' : 'https://islomov-ikromjon-404.onrender.com/api/contact';
+        // Renderda backend va frontend bir joyda bo'lsa, to'g'ridan-to'g'ri /api/contact ishlatish ma'qul
+        const API_URL = isLocal ? 'http://localhost:5000/api/contact' : '/api/contact';
         console.log("Xabar yuborilmoqda:", API_URL); // Tekshirish uchun
 
         try {
