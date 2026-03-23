@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const cors = require('cors'); // CORS xatolarini oldini olish uchun
 const rateLimit = require('express-rate-limit'); // Spamdan himoya
 const path = require('path'); // Fayl yo'llari bilan ishlash uchun
+const fs = require('fs'); // Fayllarni tekshirish uchun
 
 const app = express();
 const PORT = process.env.PORT || 5000; // Server porti
@@ -12,12 +13,27 @@ const PORT = process.env.PORT || 5000; // Server porti
 app.use(cors()); // Barcha domenlardan so'rovlarni qabul qilish
 app.use(express.json()); // JSON formatidagi so'rovlarni tahlil qilish
 
-// Statik fayllarni (Frontend: HTML, CSS, JS, Rasmlar) ulash
-app.use(express.static(path.join(__dirname, '../')));
+// DEBUG: Har bir kelayotgan so'rovni logga yozish
+app.use((req, res, next) => {
+    console.log(`So'rov: ${req.method} ${req.url}`);
+    next();
+});
+
+// Statik fayllar (Frontend) shu papkaning o'zida (__dirname)
+console.log('Server papkasi:', __dirname);
+
+// DEBUG: style.css borligini tekshirish
+if (fs.existsSync(path.join(__dirname, 'style.css'))) {
+    console.log('style.css fayli topildi ✅');
+} else {
+    console.error('DIQQAT: style.css TOPILMADI ❌');
+}
+
+app.use(express.static(__dirname));
 
 // Asosiy sahifa so'ralganda index.html ni qaytarish
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Nodemailer transporterini sozlash
@@ -66,6 +82,6 @@ app.post('/api/contact', limiter, async (req, res) => {
 
 // Serverni ishga tushirish
 app.listen(PORT, () => {
-    console.log(`VERSIYA 1.0.2 ISHLADI! Port: ${PORT}`);
-    console.log(`SAYT TAYYOR: https://islomov-ikromjon-404.onrender.com`);
+    console.log(`VERSIYA 1.1.2 (ROOT SERVER FIX) ISHLADI! Port: ${PORT}`);
+    console.log(`Server ishga tushdi.`);
 });
