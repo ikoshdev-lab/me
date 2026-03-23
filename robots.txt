@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://islomov-ikromjon-404.onrender.com/sitemap.xml
