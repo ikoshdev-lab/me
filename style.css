@@ -713,7 +713,7 @@ footer {
         align-items: center;
         gap: 30px;
         transition: right 0.5s ease-in-out;
-        z-index: 1000;
+        z-index: 1100; /* Chat vidjetidan (1000) balandroq bo'lishi shart */
     }
 
     .nav-links li {
@@ -723,7 +723,7 @@ footer {
 
     .hamburger {
         display: block;
-        z-index: 1001; /* Menyu ustida turishi uchun */
+        z-index: 1101; /* Menyudan ham baland */
     }
     
     /* Til va tema tugmalarini menyu ochilganda ko'rinadigan qilish */
@@ -742,6 +742,11 @@ footer {
 
     .hamburger.active .fa-times {
         display: block;
+    }
+
+    /* MUHIM: Telefonda videoni o'chirib, faqat rasm qoldirish (Tezlik uchun) */
+    #bg-video {
+        display: none;
     }
 
     header {
