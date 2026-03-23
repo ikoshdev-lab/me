@@ -687,6 +687,11 @@ footer {
         overflow-x: hidden; /* Yon tomonga siljishni oldini olish */
     }
     
+    /* Mobil qurilmalarda custom cursor kerak emas, xalaqit beradi */
+    .cursor-dot, .cursor-outline {
+        display: none !important;
+    }
+    
     section { padding: 60px 5%; }
 
     nav {
@@ -815,7 +820,9 @@ footer {
     /* Modal oynalar mobilga moslash */
     .modal-content {
         width: 90%;
-        margin-top: 20%;
+        margin-top: 10%;
+        max-height: 80vh; /* Ekranga sig'masa scroll bo'ladi */
+        overflow-y: auto;
     }
 
     .toast {
@@ -826,6 +833,17 @@ footer {
     
     .creata-box {
         padding: 20px;
+    }
+
+    /* Lightbox rasmlarini mobilga moslash */
+    .lightbox-content {
+        width: 95%;
+        max-height: 70vh;
+    }
+    
+    .close-lightbox {
+        right: 15px;
+        top: 25px;
     }
 }
 
