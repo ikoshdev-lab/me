@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const cors = require('cors'); // CORS xatolarini oldini olish uchun
 const rateLimit = require('express-rate-limit'); // Spamdan himoya
 const path = require('path'); // Fayl yo'llari bilan ishlash uchun
+const fs = require('fs'); // Fayllarni tekshirish uchun
 
 const app = express();
 const PORT = process.env.PORT || 5000; // Server porti
@@ -12,12 +13,29 @@ const PORT = process.env.PORT || 5000; // Server porti
 app.use(cors()); // Barcha domenlardan so'rovlarni qabul qilish
 app.use(express.json()); // JSON formatidagi so'rovlarni tahlil qilish
 
-// MUHIM: Statik fayllar (Frontend) bitta papka yuqorida joylashgan
-app.use(express.static(path.join(__dirname, '../')));
+// Statik fayllar yo'lini aniqlash
+const frontendPath = path.join(__dirname, '../');
+console.log('Frontend papkasi:', frontendPath);
+
+// DEBUG: Papka ichidagi fayllarni tekshirish (Render loglarida ko'rinadi)
+fs.readdir(frontendPath, (err, files) => {
+    if (err) {
+        console.error('Papkani o\'qishda xato:', err);
+    } else {
+        console.log('Frontend papkasidagi fayllar:', files);
+        if (!files.includes('style.css')) {
+            console.error('DIQQAT: style.css TOPILMADI! Iltimos Githubga yuklang.');
+        } else {
+            console.log('style.css fayli mavjud. ✅');
+        }
+    }
+});
+
+app.use(express.static(frontendPath));
 
 // Asosiy sahifa so'ralganda index.html ni qaytarish
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
+    res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 // Nodemailer transporterini sozlash
