@@ -13,6 +13,12 @@ const PORT = process.env.PORT || 5000; // Server porti
 app.use(cors()); // Barcha domenlardan so'rovlarni qabul qilish
 app.use(express.json()); // JSON formatidagi so'rovlarni tahlil qilish
 
+// DEBUG: Har bir kelayotgan so'rovni logga yozish (Render Logda ko'rinadi)
+app.use((req, res, next) => {
+    console.log(`So'rov keldi: ${req.method} ${req.url}`);
+    next();
+});
+
 // Statik fayllar yo'lini aniqlash
 const frontendPath = path.resolve(__dirname, '..'); // '..' orqali aniq tepaga chiqish
 console.log('Frontend papkasi:', frontendPath);
@@ -32,6 +38,19 @@ fs.readdir(frontendPath, (err, files) => {
 });
 
 app.use(express.static(frontendPath));
+
+// QO'SHIMCHA: Agar static ishlamasa, style.css va script.js ni qo'lda uzatish
+app.get('/style.css', (req, res) => {
+    res.sendFile(path.resolve(frontendPath, 'style.css'), (err) => {
+        if (err) console.error("style.css yuborishda xato:", err);
+    });
+});
+
+app.get('/script.js', (req, res) => {
+    res.sendFile(path.resolve(frontendPath, 'script.js'), (err) => {
+        if (err) console.error("script.js yuborishda xato:", err);
+    });
+});
 
 // Asosiy sahifa so'ralganda index.html ni qaytarish
 app.get('/', (req, res) => {
@@ -84,6 +103,6 @@ app.post('/api/contact', limiter, async (req, res) => {
 
 // Serverni ishga tushirish
 app.listen(PORT, () => {
-    console.log(`VERSIYA 1.0.9 (FINAL FIX) ISHLADI! Port: ${PORT}`);
+    console.log(`VERSIYA 1.1.0 (DEBUG & FORCE FILES) ISHLADI! Port: ${PORT}`);
     console.log(`Server ishga tushdi.`);
 });
