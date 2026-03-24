@@ -493,9 +493,13 @@ const navLinks = document.querySelector('.nav-links');
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navLinks.classList.toggle('active');
+    // Menyu ochilganda scrollni bloklash
+    document.body.classList.toggle('no-scroll');
 });
 
 document.querySelectorAll('.nav-link-item').forEach(link => link.addEventListener('click', () => {
     hamburger.classList.remove('active');
     navLinks.classList.remove('active');
+    // Menyu yopilganda scrollni ochish
+    document.body.classList.remove('no-scroll');
 }));

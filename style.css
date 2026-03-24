@@ -35,7 +35,8 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
     transition: background-color 0.3s ease, color 0.3s ease;
-    overflow-x: hidden;
+    overflow-x: hidden !important; /* Yon tomonga o'tib ketishni qat'iy taqiqlash */
+    width: 100%;
 }
 
 /* Rasmlar konteynerdan chiqib ketmasligi uchun */
@@ -682,12 +683,9 @@ footer {
 @media (max-width: 768px) {
     /* Asosiy shrift va o'lchamlarni kichiklashtirish */
     html { font-size: 14px; }
+    html, body { overflow-x: hidden; position: relative; }
     h1 { font-size: 2rem; }
     h2 { font-size: 1.8rem; }
-    
-    body {
-        overflow-x: hidden; /* Yon tomonga siljishni oldini olish */
-    }
     
     /* Mobil qurilmalarda custom cursor kerak emas, xalaqit beradi */
     .cursor-dot, .cursor-outline {
@@ -742,11 +740,6 @@ footer {
 
     .hamburger.active .fa-times {
         display: block;
-    }
-
-    /* MUHIM: Telefonda videoni o'chirib, faqat rasm qoldirish (Tezlik uchun) */
-    #bg-video {
-        display: none;
     }
 
     header {
@@ -924,6 +917,12 @@ footer {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Mobil menyu ochilganda body qimirlamasligi uchun */
+.no-scroll {
+    overflow: hidden !important;
+    height: 100vh;
 }
 
 .preloader-hide {
