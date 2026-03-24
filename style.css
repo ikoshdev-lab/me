@@ -715,12 +715,22 @@ footer {
     }
 
     .nav-links li {
+        width: 100%; /* Linklar butun qatorni egallasin */
         margin-left: 0;
         font-size: 1.2rem; /* Menyu yozuvlarini kattalashtirish */
+    }
+    
+    /* MUHIM: Mobil menyu orqa foni qora bo'lgani uchun, yozuvlarni OQ rangga majburlaymiz */
+    .nav-links li a {
+        color: #fff !important;
+        display: block;
+        padding: 10px;
     }
 
     .hamburger {
         display: block;
+        position: relative; /* Z-index ishlashi uchun shart */
+        color: var(--text-color);
         z-index: 1101; /* Menyudan ham baland */
     }
     
@@ -729,6 +739,11 @@ footer {
         margin-left: 10px;
     }
     
+    /* Menyu ochilganda 'X' tugmasi ko'rinishi uchun uni ham OQ qilamiz */
+    .hamburger.active {
+        color: #fff;
+    }
+
     .lang-btn {
         padding: 4px 8px;
         font-size: 0.8rem;
@@ -822,9 +837,26 @@ footer {
     /* Modal oynalar mobilga moslash */
     .modal-content {
         width: 90%;
+        padding: 40px 20px 20px 20px; /* X tugmasi sig'ishi uchun tepadan joy */
         margin-top: 10%;
         max-height: 80vh; /* Ekranga sig'masa scroll bo'ladi */
         overflow-y: auto;
+    }
+    
+    /* Modal yopish tugmasini (X) qulay joylashtirish */
+    .close-portfolio-modal, .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 2rem;
+        color: var(--text-color);
+        background: rgba(255,255,255,0.1); /* Orqa fon */
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
     }
 
     .toast {
@@ -833,9 +865,7 @@ footer {
         bottom: 20px;
     }
     
-    .creata-box {
-        padding: 20px;
-    }
+    .creata-box { padding: 20px; }
 
     /* Lightbox rasmlarini mobilga moslash */
     .lightbox-content {
